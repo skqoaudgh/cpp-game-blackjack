@@ -32,10 +32,10 @@ public:
 		
 		switch(Shape)
 		{
-			case 0: shapeStr = "스페이드"; break;
-			case 1: shapeStr = "다이아몬드"; break;
-			case 2: shapeStr = "클로버"; break;
-			case 3: shapeStr = "하트"; break;
+			case 0: shapeStr = "Spade"; break;
+			case 1: shapeStr = "Diamond"; break;
+			case 2: shapeStr = "Clover"; break;
+			case 3: shapeStr = "Heart"; break;
 		}
 		switch(number)
 		{
