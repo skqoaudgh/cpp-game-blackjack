@@ -94,11 +94,11 @@ class Player {
 	int Score;
 	
 public:
-	void drawCard(Card card) {
+	void drawCard(Card card, int type=0) {
 		CardList.push_back(Card(card.Shape,card.Number));
-		setPlayerScore();
+		setPlayerScore(type);
 	}
-	void setPlayerScore() {
+	void setPlayerScore(int type) {
 		int score = 0;
 		bool isPlayerHasAce = false;
 		for(int i=0; i<CardList.size(); i++)
@@ -110,7 +110,7 @@ public:
 			if(CardList[i].Number == 1)
 				isPlayerHasAce = true;
 		}
-		if(isPlayerHasAce)
+		if(isPlayerHasAce || type == 1)
 		{
 			if(score+10 <= 21)
 				score += 10;
@@ -240,8 +240,8 @@ void firstDrawPhase(Deck &deck, Player &player, Player &dealer)
 		Sleep(1000);
 		cout << "Dealer draw 2 cards.\n";
 		Sleep(2000);
-		dealer.drawCard(deck.drawCard());
-		dealer.drawCard(deck.drawCard());
+		dealer.drawCard(deck.drawCard(),1);
+		dealer.drawCard(deck.drawCard(),1);
 		cout << "Dealer`s opened card: ";
 		dealer.printFirstCard();
 		cout << "\n\n\n\n";
@@ -334,7 +334,7 @@ int main()
 						{
 							if(dealer.getPlayerScore() < 17)
 							{
-								dealer.drawCard(deck.drawCard());
+								dealer.drawCard(deck.drawCard(),1);
 								if(checkPlayerBurst(dealer))
 								{
 									cout << "\nDealer Burst!\n";
@@ -349,7 +349,7 @@ int main()
 						stayCount ++;
 						while(dealer.getPlayerScore() < 17)
 						{
-							dealer.drawCard(deck.drawCard());
+							dealer.drawCard(deck.drawCard(),1);
 							if(checkPlayerBurst(dealer))
 							{
 								cout << "Dealer Burst!\n";
